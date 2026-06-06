@@ -1,9 +1,18 @@
 require('dotenv').config();
 
+const connectDB = require("./src/config/db");
+
 const express = require('express')
 const cors = require('cors');
 
 const app = express()
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  'http://localhost:3000'
+];
+
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -21,6 +30,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 3000;
+
+connectDB();
 
 app.use(express.json());
 
