@@ -1,12 +1,14 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const authMiddleware = require("../middlewares/authMiddleware");
 
 const User = require("../models/User");
 
 const router = express.Router();
 
 //retorna todos os usuarios
-router.get("/", async (req, res) => {
+router.get("/",authMiddleware, async (req, res) => {
   try {
     const users = await User.find();
 
@@ -79,9 +81,22 @@ router.post("/login", async (req, res) => {
     });
   }
 
-  res.status(200).json({
-    message: "Login realizado com sucesso"
-  });
+  const token = jwt.sign(
+  {
+    id: user._id,
+    email: user.email,
+    role: user.role
+  },
+  process.env.JWT_SECRET,
+  {
+    expiresIn: "1h"
+  }
+);
+
+res.status(200).json({
+  message: "Login realizado com sucesso",
+  token
+});
 
 });
 
