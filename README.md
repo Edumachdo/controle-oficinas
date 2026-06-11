@@ -8,6 +8,7 @@ Projeto inicial com React + Vite no front-end e Node.js + Express no back-end.
 ```bash
 cd backend
 npm install
+docker compose up -d
 npm run dev
 ```
 API: http://localhost:3001

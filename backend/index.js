@@ -4,6 +4,7 @@ const connectDB = require("./src/config/db");
 
 const User = require("./src/models/User");
 const userRoutes = require("./src/routes/userRoutes");
+const workshopRoutes = require("./src/routes/workshopRoutes");
 
 const express = require('express')
 const cors = require('cors');
@@ -43,7 +44,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", userRoutes);
-
+app.use("/workshops", workshopRoutes);
 
 
 app.listen(PORT, () => {

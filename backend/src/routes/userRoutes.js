@@ -7,7 +7,7 @@ const User = require("../models/User");
 
 const router = express.Router();
 
-//retorna todos os usuarios
+//retorna todos os usuarios (requer token)
 router.get("/",authMiddleware, async (req, res) => {
   try {
     const users = await User.find();
@@ -21,8 +21,8 @@ router.get("/",authMiddleware, async (req, res) => {
   }
 });
 
-//cadastra um usuario
-router.post("/", async (req, res) => {
+//cadastra um usuario(requer token)
+router.post("/",authMiddleware, async (req, res) => {
   try {
     const { name, email, password, phone, course, role } = req.body;
 
@@ -57,7 +57,11 @@ router.post("/", async (req, res) => {
   }
 });
 
-//rota para login
+/*rota para login
+usuario administrador pre cadastrado para teste:
+  "email": "admin2@escola.edu.br",
+  "password": "123456"
+*/
 router.post("/login", async (req, res) => {
 
   const { email, password } = req.body;
