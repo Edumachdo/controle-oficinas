@@ -22,6 +22,23 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Listar presenças de uma oficina específica
+router.get("/workshop/:workshopId", async (req, res) => {
+  try {
+    const attendance = await Attendance.find({
+      workshop: req.params.workshopId
+    })
+      .populate("student", "name email role")
+      .populate("workshop", "name date time");
+
+    res.status(200).json(attendance);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+
 // Buscar uma presença específica
 router.get("/:id", async (req, res) => {
   try {

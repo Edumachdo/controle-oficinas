@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { api } from "../api.js";
 import StatusBadge from "../components/StatusBadge.jsx";
 export default function Dashboard() {
+  const [data, setData] = useState(null);
   useEffect(() => {
   api("/dashboard")
     .then(setData)
