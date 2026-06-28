@@ -7,6 +7,7 @@ const userRoutes = require("./src/routes/userRoutes");
 const workshopRoutes = require("./src/routes/workshopRoutes");
 const attendanceRoutes = require('./src/routes/attendanceRoutes');
 const createAdminUser = require("./src/seed/createAdminUser");
+const dashboardRoutes = require("./src/routes/dashboardRoutes");
 
 const express = require('express')
 const cors = require('cors');
@@ -47,6 +48,7 @@ app.get("/", (req, res) => {
 app.use("/users", userRoutes);
 app.use("/workshops", workshopRoutes);
 app.use("/attendance", attendanceRoutes);
+app.use("/dashboard", dashboardRoutes);
 
 
 const startServer = async () => {
