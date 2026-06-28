@@ -2,29 +2,33 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BookOpen } from "lucide-react";
 import { api } from "../api.js";
+
 export default function Login() {
-  const [email, setEmail] = useState("admin@escola.edu.br");
-  const [password, setPassword] = useState("123456");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
+
     try {
-      const data = await api("/login", {
+      const data = await api("/users/login", {
         method: "POST",
         body: JSON.stringify({ email, password }),
       });
+
       localStorage.setItem("token", data.token);
+
       navigate("/", { replace: true });
     } catch (err) {
-      setError(
-        "Não foi possível conectar ao servidor. Verifique se o backend está disponível e use o IP correto.",
-      );
+      setError(err.message || "E-mail ou senha inválidos.");
       console.error(err);
     }
   }
+
   return (
     <div className="loginPage">
       <section className="loginHero">
@@ -37,6 +41,7 @@ export default function Login() {
             <span>Sistema Educacional</span>
           </div>
         </div>
+
         <div className="heroText">
           <h1>
             Gerencie suas <span>oficinas</span> com facilidade.
@@ -45,6 +50,7 @@ export default function Login() {
             Controle inscrições, presenças, professores e alunos em um único
             lugar.
           </p>
+
           <div className="heroStats">
             <strong>
               5+<small>Oficinas</small>
@@ -58,24 +64,34 @@ export default function Login() {
           </div>
         </div>
       </section>
+
       <section className="loginFormArea">
         <form onSubmit={handleSubmit} className="loginForm">
           <h2>Bem-vindo de volta</h2>
           <p>Acesse sua conta para continuar.</p>
+
           <label>E-mail</label>
           <input
             type="email"
             value={email}
+            placeholder="Digite seu e-mail"
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
+
           <label>Senha</label>
           <input
             type="password"
             value={password}
+            placeholder="Digite sua senha"
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
+
           <button type="submit">Entrar</button>
+
           {error && <p className="error">{error}</p>}
+
           <a>Esqueci minha senha</a>
         </form>
       </section>
