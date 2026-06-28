@@ -1,3 +1,4 @@
+
 * {
   box-sizing: border-box;
 }
@@ -477,7 +478,7 @@ td .miniAvatar {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 16px;
@@ -495,169 +496,296 @@ td .miniAvatar {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-}
-.workshopDetails {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  width: 100%;
-  max-height: 60vh;
-  overflow-y: auto;
-  padding-right: 8px;
-}
-.detailRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px;
-  border-bottom: 1px solid #e5edf8;
-  border-radius: 8px;
-  background: #f8fafc;
-}
-.detailRow.full {
-  grid-column: 1/-1;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 16px;
-}
-.detailRow strong {
-  font-weight: 700;
-  color: #374151;
-  min-width: 120px;
-}
-.detailRow span,
-.detailRow p {
-  color: #6b7280;
-  text-align: right;
-}
-.detailRow p {
-  margin: 8px 0 0;
-  line-height: 1.5;
-  text-align: left;
-}
-.attendancePage {
-  max-width: 760px;
-  margin: 0 auto;
-}
-.attendanceStats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin: 22px 0;
-}
-.attendanceStats .card {
-  text-align: center;
-}
-.attendanceStats .green {
-  background: #f0fdf4;
-  border-color: #bbf7d0;
-}
-.attendanceStats .green strong {
-  color: #16a34a;
-}
-.attendanceStats .red {
-  background: #fef2f2;
-  border-color: #fecaca;
-}
-.attendanceStats .red strong {
-  color: #ef4444;
-}
-.student {
-  display: grid;
-  grid-template-columns: 20px 34px 1fr auto;
-  gap: 12px;
-  align-items: center;
-  padding: 14px;
-  border-bottom: 1px solid #e5edf8;
-}
-.student.present {
-  background: #f0fdf4;
-}
-.student em {
-  font-style: normal;
-  font-size: 12px;
-  font-weight: 800;
-  color: #64748b;
-}
-@media (max-width: 1100px) {
-  .statsGrid,
-  .workshopGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .dashboardGrid {
-    grid-template-columns: 1fr;
-  }
-}
-.menuButton {
-  display: none;
-}
-@media (max-width: 760px) {
-  .loginPage,
-  .app {
-    grid-template-columns: 1fr;
-  }
-  .sidebar {
-    display: block;
-    position: fixed;
-    inset: 0 auto 0 0;
-    width: 260px;
-    max-width: 80%;
-    transform: translateX(-108%);
-    transition: transform 0.25s ease;
-    background: #1e3154;
-    z-index: 40;
-    overflow-y: auto;
-    height: 100vh;
-    padding: 18px 14px;
-  }
-  .sidebar.open {
-    transform: translateX(0);
-  }
-  .topbar {
-    justify-content: space-between;
-    padding: 0 16px;
-  }
-  .topbar input {
-    width: 100%;
-    max-width: none;
-  }
-  .menuButton {
-    display: inline-flex;
-    border: 0;
-    background: #2563eb;
-    color: white;
-    border-radius: 14px;
-    width: 42px;
-    height: 42px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-  .menuBackdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(15, 23, 42, 0.45);
-    z-index: 30;
-  }
-  .loginHero {
-    display: none;
-  }
-  .statsGrid,
-  .workshopGrid,
-  .filters,
-  .formPanel,
-  .attendanceStats {
-    grid-template-columns: 1fr;
-  }
-}
-.error {
-  display: block;
-  color: #dc2626;
-  font-size: 12px;
-  margin-top: 4px;
+  margin-top: 8px;
 }
 
-.oficina {
-  grid-template-columns: auto;
+
+.avatarDropdown {
+  display: none !important;
 }
+
+
+
+.menuButton {
+  display: none !important;
+}
+
+
+/* 
+   MÍDIA QUERY MOBILE
+
+   */@media (max-width: 768px) {
+  .brandMobileHide, 
+  .menuButton, 
+  .menuBackdrop {
+    display: none !important;
+  }
+
+  .app {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  /* MENU INFERIOR MOBILE */
+  .sidebar {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 64px !important;
+    z-index: 9999 !important;
+    background: #1e3154 !important;
+    box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.15);
+    border-radius: 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    transform: none !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .sidebar nav {
+    margin-top: 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+  }
+
+  .sidebar a {
+    display: flex !important;
+    flex-direction: column !important;
+
+align-items: center !important;
+justify-content: center !important;
+flex: 1 !important;
+height: 100% !important;
+padding: 4px 0 !important;
+margin: 0 !important;
+font-size: 11px !important;
+font-weight: 600 !important;
+color: #cbd5e1 !important;
+text-decoration: none !important;
+border-radius: 0 !important;
+background: transparent !important;
+gap: 2px !important;
+}
+.sidebar a.active {
+background: #243b66 !important;
+color: #ffffff !important;
+}
+.sidebar a svg {
+width: 20px !important;
+height: 20px !important;
+display: block !important;
+margin: 0 auto !important;
+}
+.logout {
+display: none !important;
+}
+/* BARRA SUPERIOR MOBILE */
+.topbar {
+padding: 0 16px;
+justify-content: space-between;
+}
+.topbar input {
+width: 70%;
+background: #f1f5f9;
+}
+.content {
+padding: 16px;
+padding-bottom: 85px;
+}
+/* RESPONSIVIDADE GRIDS MOBILE*/
+.loginPage {
+grid-template-columns: 1fr;
+}
+.loginHero {
+padding: 32px 20px;
+gap: 40px;
+}
+.heroText h1 {
+font-size: 32px;
+}
+.heroStats {
+flex-wrap: wrap;
+gap: 16px;
+}
+.pageHeader {
+flex-direction: column;
+align-items: flex-start;
+gap: 12px;
+}
+.statsGrid {
+grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+gap: 12px;
+}
+.card strong {
+font-size: 26px;
+}
+.dashboardGrid {
+grid-template-columns: 1fr !important;
+gap: 16px;
+}
+.chart {
+height: 180px;
+}
+.upcomingItem {
+flex-direction: column;
+align-items: flex-start;
+gap: 10px;
+}
+.upcomingItem > div:last-child {
+width: 100%;
+justify-content: flex-start;
+}
+.workshopGrid {
+grid-template-columns: 1fr !important;
+gap: 16px;
+}
+.filters {
+grid-template-columns: 1fr;
+gap: 10px;
+}
+.formPanel {
+grid-template-columns: 1fr;
+gap: 12px;
+}
+/* ROLAGEM HORIZONTAL LISTA DE USUARIOS */
+.tablePanel {
+overflow-x: auto !important;
+overflow-y: hidden !important;
+width: 100% !important;
+-webkit-overflow-scrolling: touch;
+margin-bottom: 24px;
+}
+.tablePanel table {
+width: 100% !important;
+min-width: 600px !important;
+}
+th, td {
+padding: 12px 10px !important;
+font-size: 13px !important;
+white-space: nowrap;
+}
+/* LISTA DE ALUNOS PRESENCA */
+.attendancePage {
+display: block !important;
+}
+.attendancePage div {
+display: flex !important;
+flex-direction: column !important;
+grid-template-columns: 1fr !important;
+width: 100% !important;
+max-width: 100% !important;
+gap: 12px !important;
+}
+.attendancePage div[class*="Card"],
+.attendancePage div[class*="item"],
+.attendancePage .card,
+.attendancePage div > div {
+width: 100% !important;
+display: flex !important;
+flex-direction: column !important;
+align-items: flex-start !important;
+padding: 16px !important;
+gap: 8px !important;
+}
+.attendancePage button {
+width: 100% !important;
+display: block !important;
+margin: 4px 0 !important;
+}
+.avatar {
+cursor: pointer !important;
+position: relative;
+}
+.avatar:active {
+opacity: 0.7;
+}
+
+
+/* 
+   SAIDA / LOGOUT
+ */
+.avatarDropdown {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  background: white;
+  border: 1px solid #dbe4f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+  padding: 6px;
+  min-width: 160px;
+}
+
+.dropdownLogoutButton {
+  width: 100% !important;
+  background: transparent !important;
+  color: #ef4444 !important; 
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  text-align: left !important;
+  transition: background 0.2s ease;
+}
+
+.dropdownLogoutButton:hover,
+.dropdownLogoutButton:active {
+  background: #fef2f2 !important; 
+}
+
+  .modalContent {
+    width: 95% !important;      
+    max-height: 85vh !important;  
+    overflow-y: auto !important;   
+    display: flex !important;
+    flex-direction: column !important;
+    -webkit-overflow-scrolling: touch; 
+  }
+
+ 
+  .formPanel {
+    grid-template-columns: 1fr !important; 
+    gap: 16px !important;
+    padding: 16px !important;
+    overflow-y: visible !important;
+    height: auto !important;
+  }
+
+  
+  .formPanel .actions {
+    margin-top: 16px !important;
+    width: 100% !important;
+    display: flex !important;
+    gap: 12px !important;
+  }
+
+  .formPanel .actions button {
+    flex: 1 !important; 
+  }
+
+  .avatarDropdown {
+    display: block !important;
+  }
+
+
+
+}
+
