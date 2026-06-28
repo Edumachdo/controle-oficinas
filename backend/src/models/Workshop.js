@@ -19,12 +19,15 @@ const workshopSchema = new mongoose.Schema(
     },
 
     teacher: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
       required: true
     },
 
     tutor: {
-      type: String
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null
     },
 
     date: {

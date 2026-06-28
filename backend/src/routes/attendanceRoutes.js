@@ -47,7 +47,15 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Criar inscrição/presença
+/* Criar inscrição/presença
+
+exemplo req.body:
+{
+  "workshop": "id_da_oficina",
+  "student": "id_do_aluno",
+  "present": false
+}
+*/
 router.post("/", async (req, res) => {
   try {
 

@@ -6,6 +6,7 @@ const User = require("./src/models/User");
 const userRoutes = require("./src/routes/userRoutes");
 const workshopRoutes = require("./src/routes/workshopRoutes");
 const attendanceRoutes = require('./src/routes/attendanceRoutes');
+const createAdminUser = require("./src/seed/createAdminUser");
 
 const express = require('express')
 const cors = require('cors');
@@ -17,7 +18,6 @@ const allowedOrigins = [
   'http://127.0.0.1:5173',
   'http://localhost:3000'
 ];
-
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -49,9 +49,17 @@ app.use("/workshops", workshopRoutes);
 app.use("/attendance", attendanceRoutes);
 
 
-app.listen(PORT, () => {
+const startServer = async () => {
+  await connectDB();
+
+  await createAdminUser();
+
+  app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
+};
+
+startServer();
 
 
 
