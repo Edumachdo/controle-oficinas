@@ -4,8 +4,12 @@ import StatusBadge from "../components/StatusBadge.jsx";
 export default function Dashboard() {
   const [data, setData] = useState(null);
   useEffect(() => {
-    api("/dashboard").then(setData);
-  }, []);
+  api("/dashboard")
+    .then(setData)
+    .catch((error) => {
+      console.error("Erro ao carregar dashboard:", error);
+    });
+}, []);
   if (!data) return <p>Carregando...</p>;
   return (
     <>

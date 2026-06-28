@@ -118,11 +118,11 @@ export default function Workshops() {
                 </div>
                 <div className="detailRow">
                   <strong>Professor:</strong>
-                  <span>{selectedWorkshop.teacher}</span>
+                  <span>{selectedWorkshop.teacher?.name}</span>
                 </div>
                 <div className="detailRow">
                   <strong>Tutor:</strong>
-                  <span>{selectedWorkshop.tutor}</span>
+                  <span>{selectedWorkshop.tutor?.name}}</span>
                 </div>
                 <div className="detailRow">
                   <strong>Data:</strong>
@@ -176,7 +176,7 @@ export default function Workshops() {
         {workshops.map((w) => {
           const percent = Math.min(100, (w.enrolled / w.maxStudents) * 100);
           return (
-            <div className="workshopCard" key={w.id}>
+            <div className="workshopCard" key={w._id}>
               <div className="workshopAccent" />
               <div className="workshopTop">
                 <div>
@@ -190,7 +190,7 @@ export default function Workshops() {
                   {w.date} • {w.time}
                 </span>
                 <span>{w.location}</span>
-                <span>Prof. {w.teacher}</span>
+                <span>Prof. {w.teacher?.name}</span>
               </div>
               <div className="progressText">
                 <span>Vagas preenchidas</span>

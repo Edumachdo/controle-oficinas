@@ -1,11 +1,25 @@
 const host =
   typeof window !== "undefined" ? window.location.hostname : "localhost";
-const API_URL = `http://${host}:3001/api`;
+
+const API_URL = `http://${host}:3000`;
+
 export async function api(path, options = {}) {
+  const token = localStorage.getItem("token");
+
   const response = await fetch(`${API_URL}${path}`, {
-    headers: { "Content-Type": "application/json", ...(options.headers || {}) },
     ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(options.headers || {}),
+    },
   });
-  if (!response.ok) throw new Error("Erro na comunicação com a API");
-  return response.json();
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Erro na comunicação com a API");
+  }
+
+  return data;
 }

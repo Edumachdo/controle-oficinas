@@ -4,6 +4,7 @@ import StatusBadge from "../components/StatusBadge.jsx";
 const emptyForm = {
   name: "",
   email: "",
+  password: "",
   phone: "",
   course: "",
   role: "Aluno",
@@ -103,6 +104,17 @@ export default function Users() {
                 {emailError && <span className="error">{emailError}</span>}
               </label>
               <label>
+                Senha
+                <input
+                  type="password"
+                  value={form.password}
+                  onChange={(e) =>
+                    setForm({ ...form, password: e.target.value })
+                  }
+                  required
+                />
+              </label>
+              <label>
                 Telefone
                 <input
                   type="text"
@@ -184,7 +196,7 @@ export default function Users() {
           </thead>
           <tbody>
             {users.map((u) => (
-              <tr key={u.id}>
+              <tr key={u._id}>
                 <td>
                   <span className="miniAvatar">
                     {u.name.slice(0, 2).toUpperCase()}
