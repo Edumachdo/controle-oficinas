@@ -8,8 +8,10 @@ import {
   ClipboardCheck,
   LogOut,
 } from "lucide-react";
+
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
   function logout() {
@@ -24,7 +26,7 @@ export default function Layout() {
   return (
     <div className={`app ${menuOpen ? "menu-open" : ""}`}>
       <aside className={`sidebar ${menuOpen ? "open" : ""}`}>
-        <div className="brand">
+        <div className="brand brandMobileHide">
           <div className="brandIcon">
             <BookOpen size={22} />
           </div>
@@ -57,6 +59,15 @@ export default function Layout() {
         </button>
       </aside>
       {menuOpen && <div className="menuBackdrop" onClick={closeMenu} />}
+      
+     
+      {dropdownOpen && (
+        <div 
+          onClick={() => setDropdownOpen(false)} 
+          style={{ position: 'fixed', inset: 0, zIndex: 998 }} 
+        />
+      )}
+
       <main className="main">
         <header className="topbar">
           <button
@@ -67,7 +78,27 @@ export default function Layout() {
             <Menu size={20} />
           </button>
           <input placeholder="Buscar..." />
-          <div className="avatar">AD</div>
+          
+          
+          <div style={{ position: "relative", zIndex: 999 }}>
+            <div 
+              className="avatar" 
+              onClick={() => setDropdownOpen(!dropdownOpen)} 
+              style={{ cursor: "pointer" }}
+            >
+              AD
+            </div>
+
+           
+            {dropdownOpen && (
+              <div className="avatarDropdown">
+                <button onClick={logout} className="dropdownLogoutButton">
+                  <LogOut size={16} />
+                  Sair do Sistema
+                </button>
+              </div>
+            )}
+          </div>
         </header>
         <section className="content">
           <Outlet />
