@@ -1,6 +1,6 @@
 # Controle de Oficinas - Full Stack
 
-Projeto inicial com React + Vite no front-end e Node.js + Express no back-end.
+Projeto Full Stack para gerenciamento de oficinas (minicursos) utilizando React + Vite no front-end e Node.js + Express no back-end, com persistência de dados em MongoDB.
 
 ## Como rodar
 
@@ -11,7 +11,8 @@ npm install
 docker compose up -d
 npm run dev
 ```
-API: http://localhost:3001
+
+API: http://localhost:3000
 
 ### Front-end
 ```bash
@@ -19,16 +20,36 @@ cd frontend
 npm install
 npm run dev
 ```
+
 Aplicação: http://localhost:5173
 
 ## Login de teste
-Use qualquer e-mail e senha. Exemplo:
-admin@escola.edu.br / 123456
+
+Utilize um usuário previamente cadastrado no banco de dados. Exemplo:
+
+```
+admin@escola.edu.br
+123456
+```
 
 ## Funcionalidades
-- Login fake
+
+- Autenticação de usuários
 - Dashboard
-- CRUD inicial de oficinas, com cadastro
+- CRUD de oficinas
 - Gestão de usuários
 - Controle de presença
-- API REST com dados em memória
+- API REST com Node.js e Express
+- Persistência de dados em MongoDB
+- Senhas criptografadas com bcrypt
+
+## Tecnologias
+
+- React
+- Vite
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- Docker Compose
+- bcrypt
