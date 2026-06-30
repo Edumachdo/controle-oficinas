@@ -25,7 +25,6 @@ pnpm-debug.log*
 # Env files
 .env
 .env.*
-!.env.example
 
 # OS files
 .DS_Store
