@@ -5,16 +5,19 @@ Projeto Full Stack para gerenciamento de oficinas (minicursos) utilizando React 
 ## Como rodar
 
 ### Back-end
+
 ```bash
 cd backend
 npm install
 docker compose up -d
+npm run seed
 npm run dev
 ```
 
 API: http://localhost:3000
 
 ### Front-end
+
 ```bash
 cd frontend
 npm install
