@@ -10,7 +10,9 @@ const router = express.Router();
 //retorna todos os usuarios (requer token)
 router.get("/",authMiddleware, async (req, res) => {
   try {
-    const users = await User.find();
+    const { role } = req.query;
+    const filter = role ? { role } : {};
+    const users = await User.find(filter);
 
     res.status(200).json(users);
 

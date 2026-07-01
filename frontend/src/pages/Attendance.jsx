@@ -117,34 +117,36 @@ export default function Attendance() {
       <div className="panel">
         <h2>Lista de Alunos</h2>
 
-        {items.length === 0 && (
-          <p>Nenhuma inscrição encontrada para esta oficina.</p>
-        )}
+        <div className="studentList">
+          {items.length === 0 && (
+            <p>Nenhuma inscrição encontrada para esta oficina.</p>
+          )}
 
-        {items.map((item) => {
-          const studentName = item.student?.name || "Aluno não encontrado";
+          {items.map((item) => {
+            const studentName = item.student?.name || "Aluno não encontrado";
 
-          return (
-            <label
-              className={item.present ? "student present" : "student"}
-              key={item._id}
-            >
-              <input
-                type="checkbox"
-                checked={item.present}
-                onChange={() => toggle(item)}
-              />
+            return (
+              <label
+                className={item.present ? 'is-present' : 'is-absent'}
+                key={item._id}
+              >
+                <input
+                  type="checkbox"
+                  checked={item.present}
+                  onChange={() => toggle(item)}
+                />
 
-              <span className="miniAvatar">
-                {studentName.slice(0, 2).toUpperCase()}
-              </span>
+                <span className="miniAvatar">
+                  {studentName.slice(0, 2).toUpperCase()}
+                </span>
 
-              <strong>{studentName}</strong>
+                <strong>{studentName}</strong>
 
-              <em>{item.present ? "Presente" : "Ausente"}</em>
-            </label>
-          );
-        })}
+                <em>{item.present ? "Presente" : "Ausente"}</em>
+              </label>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

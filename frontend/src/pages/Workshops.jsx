@@ -14,6 +14,8 @@ const emptyForm = {
 };
 export default function Workshops() {
   const [workshops, setWorkshops] = useState([]);
+  const [teachers, setTeachers] = useState([]);
+  const [tutors, setTutors] = useState([]);
   const [search, setSearch] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
@@ -24,6 +26,8 @@ export default function Workshops() {
   }
   useEffect(() => {
     load();
+    api("/users?role=Professor").then(setTeachers);
+    api("/users?role=Tutor").then(setTutors);
   }, [search]);
   async function saveWorkshop(e) {
     e.preventDefault();
@@ -51,34 +55,90 @@ export default function Workshops() {
           <div className="modalContent" onClick={(e) => e.stopPropagation()}>
             <form className="formPanel" onSubmit={saveWorkshop}>
               <h2>Cadastro de Oficina</h2>
-              {[
-                ["name", "Nome da oficina"],
-                ["theme", "Tema"],
-                ["teacher", "Professor responsável"],
-                ["tutor", "Tutor responsável"],
-                ["date", "Data"],
-                ["time", "Horário"],
-                ["location", "Local"],
-                ["maxStudents", "Limite de vagas"],
-              ].map(([field, label]) => (
-                <label key={field}>
-                  {label}
-                  <input
-                    type={
-                      field === "date"
-                        ? "date"
-                        : field === "maxStudents"
-                          ? "number"
-                          : "text"
-                    }
-                    value={form[field]}
-                    onChange={(e) =>
-                      setForm({ ...form, [field]: e.target.value })
-                    }
-                    required
-                  />
-                </label>
-              ))}
+              
+              <label>
+                Nome da oficina
+                <input
+                  type="text"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  required
+                />
+              </label>
+
+              <label>
+                Tema
+                <input
+                  type="text"
+                  value={form.theme}
+                  onChange={(e) => setForm({ ...form, theme: e.target.value })}
+                  required
+                />
+              </label>
+
+              <label>
+                Professor responsável
+                <select
+                  value={form.teacher}
+                  onChange={(e) => setForm({ ...form, teacher: e.target.value })}
+                  required
+                >
+                  <option value="" disabled>Selecione um professor</option>
+                  {teachers.map(t => <option key={t._id} value={t._id}>{t.name}</option>)}
+                </select>
+              </label>
+
+              <label>
+                Tutor responsável
+                <select
+                  value={form.tutor}
+                  onChange={(e) => setForm({ ...form, tutor: e.target.value })}
+                >
+                  <option value="">Nenhum</option>
+                  {tutors.map(t => <option key={t._id} value={t._id}>{t.name}</option>)}
+                </select>
+              </label>
+
+              <label>
+                Data
+                <input
+                  type="date"
+                  value={form.date}
+                  onChange={(e) => setForm({ ...form, date: e.target.value })}
+                  required
+                />
+              </label>
+
+              <label>
+                Horário
+                <input
+                  type="text"
+                  value={form.time}
+                  onChange={(e) => setForm({ ...form, time: e.target.value })}
+                  required
+                />
+              </label>
+
+              <label>
+                Local
+                <input
+                  type="text"
+                  value={form.location}
+                  onChange={(e) => setForm({ ...form, location: e.target.value })}
+                  required
+                />
+              </label>
+
+              <label>
+                Limite de vagas
+                <input
+                  type="number"
+                  value={form.maxStudents}
+                  onChange={(e) => setForm({ ...form, maxStudents: e.target.value })}
+                  required
+                />
+              </label>
+              
               <label className="full">
                 Descrição
                 <textarea
@@ -122,7 +182,7 @@ export default function Workshops() {
                 </div>
                 <div className="detailRow">
                   <strong>Tutor:</strong>
-                  <span>{selectedWorkshop.tutor?.name}}</span>
+                  <span>{selectedWorkshop.tutor?.name}</span>
                 </div>
                 <div className="detailRow">
                   <strong>Data:</strong>
